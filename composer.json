@@ -2,5 +2,10 @@
     "require": {
         "abraham/twitteroauth": "^0.7.4",
         "symfony/dotenv": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CerysFeed\\": "src/"
+        }
     }
 }
