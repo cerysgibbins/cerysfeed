@@ -20,4 +20,8 @@ $statuses = $twitter->getStatuses('cerysgibbins', 5);
 foreach($statuses as $status) {
     echo $twitter->tweet($status);   
     echo "\n"; 
+    echo $twitter->user($status);
+    echo "\n"; 
+    echo $twitter->date($status)->format('jS M Y h:ia');
+    echo "\n";
 }

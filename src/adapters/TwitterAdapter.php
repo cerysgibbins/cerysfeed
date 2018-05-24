@@ -10,7 +10,7 @@ interface TwitterAdapter
 
     public function tweet($status);
     
-    public function date();
+    public function date($status);
 
-    public function user();        
+    public function user($status);        
 }

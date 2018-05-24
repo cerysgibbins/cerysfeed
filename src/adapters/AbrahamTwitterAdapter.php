@@ -34,13 +34,13 @@ class AbrahamTwitterAdapter implements TwitterAdapter
         return $status->text;
     }
     
-    public function date()
+    public function date($status)
     {
-        return new \DateTime();
+        return new \DateTime($status->created_at);
     }
 
-    public function user() 
+    public function user($status) 
     {
-        return 'username';
+        return $status->user->screen_name;
     }
 }
