@@ -1,20 +1,20 @@
 <?php
 
-namespace CerysFeed;
+namespace CerysFeed\Adapters;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
-class TwitterApi
+class AbrahamTwitterAdapter implements TwitterAdapter
 {
     private $connection;
 
-    public function __construct($consumerKey, $consumerSecret, $accessToken, $tokenSecret)
+    public function initialise($consumerKey, $consumerSecret, $accessToken, $tokenSecret)
     {
         $this->connection = new TwitterOAuth(
             $consumerKey, $consumerSecret, $accessToken, $tokenSecret
         );
     }
-
+    
     public function getStatuses($screenName, $count)
     {
         $statuses = $this->connection->get(
@@ -27,5 +27,20 @@ class TwitterApi
         );
         
         return $statuses;
+    }
+
+    public function tweet($status)
+    {
+        return $status->text;
+    }
+    
+    public function date()
+    {
+        return new \DateTime();
+    }
+
+    public function user() 
+    {
+        return 'username';
     }
 }
