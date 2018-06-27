@@ -1,0 +1,6 @@
+<h1>Cerys Feed</h1>
+<ul>
+    {% for status in statuses %}
+        <li>{{ status.user }} {{ status.date|date("d/m/Y") }} {{ status.tweet|raw }}</li>
+    {% endfor %}
+</ul>

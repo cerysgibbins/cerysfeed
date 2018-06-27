@@ -4,6 +4,7 @@ include __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\Dotenv\Dotenv;
 use CerysFeed\Adapters\AbrahamTwitterAdapter;
+use CerysFeed\TwigRenderer;
 
 $dotenv = new Dotenv();
 $dotenv->load(__DIR__.'/../.env');
@@ -17,11 +18,6 @@ $twitter->initialise(
 );
 $statuses = $twitter->getStatuses('cerysgibbins', 5);
 
-foreach($statuses as $status) {
-    echo $twitter->tweet($status);   
-    echo "\n"; 
-    echo $twitter->user($status);
-    echo "\n"; 
-    echo $twitter->date($status)->format('jS M Y h:ia');
-    echo "\n";
-}
+$renderer = new TwigRenderer();
+
+echo $renderer->render($statuses);
