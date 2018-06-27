@@ -12,5 +12,7 @@ interface TwitterAdapter
     
     public function date($status);
 
-    public function user($status);        
+    public function user($status);     
+    
+    public function tweetId($status);
 }

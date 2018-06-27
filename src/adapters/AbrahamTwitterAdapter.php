@@ -25,7 +25,7 @@ class AbrahamTwitterAdapter implements TwitterAdapter
                 'screen_name' => $screenName
             ]
         );
-        
+       
         return $this->buildStatusArray($statuses);
     }
 
@@ -44,6 +44,11 @@ class AbrahamTwitterAdapter implements TwitterAdapter
         return $status->user->screen_name;
     }
 
+    public function tweetId($status) 
+    {
+        return $status->id;
+    }
+
     private function buildStatusArray($statuses)
     {
         $statusArray = [];
@@ -53,6 +58,7 @@ class AbrahamTwitterAdapter implements TwitterAdapter
                 'user' => $this->user($status),
                 'date' => $this->date($status),
                 'tweet' => $this->tweet($status),
+                'tweet_id' => $this->tweetId($status),
             ];
         }
         
