@@ -9,10 +9,15 @@
 
 body {
     background-color: #2E2E2D;
+    //background: url('../images/macbg-white.jpg');
     font-family: 'Open Sans', sans-serif;
 }
 
-.section__wrapper {
+a {
+    color: inherit;
+}
+
+.section {
     padding: 20px;
 }
 
@@ -32,7 +37,7 @@ body {
     justify-content: center;
 }
 
-ul {
+.tweet-table {
     background: #ffffff;
     color: #2E2E2D;
     list-style: none;
@@ -43,11 +48,14 @@ ul {
     border-radius: 25px;
 }
 
-li {
+.tweet-table__row {
     font-size: 18px;
     padding: 15px;
 }
 
+.tweet-table__cell {
+    padding: 10px;
+}
 </style>
 
 <html>
@@ -56,14 +64,18 @@ li {
         <title>Twitter Feed</title>
     </head>
     <body>
-        <section class="section__wrapper">
+        <section class="section">
         <h1 class="section__title">Cerys' Feed</h1>
             <div class="section__tweets">
-                <ul>
+                <table class="tweet-table">
                     {% for status in statuses %}
-                        <li><b>{{ status.user }}:</b> {{ status.date|date("d/m/Y") }} {{ status.tweet|raw }}</li>
+                        <tr class="tweet-table__row">
+                            <td class="tweet-table__cell"><strong>{{ status.user }}:</strong></td>
+                            <td class="tweet-table__cell">{{ status.date|date("d/m/Y") }}</td> 
+                            <td class="tweet-table__cell">{{ status.tweet|raw }}</td>
+                        </tr>
                     {% endfor %}
-                </ul>
+                </table>
             </div>
         </section>
     </body>
