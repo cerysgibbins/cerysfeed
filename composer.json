@@ -8,5 +8,8 @@
         "psr-4": {
             "CerysFeed\\": "src/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.2"
     }
 }

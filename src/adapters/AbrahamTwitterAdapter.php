@@ -36,7 +36,13 @@ class AbrahamTwitterAdapter implements TwitterAdapter
     
     public function date($status)
     {
-        return new \DateTime($status->created_at);
+        try {
+            $dateTime = new \DateTime($status->created_at);
+        } catch (\Exception $exception) {
+            return null;
+        }
+        
+        return $dateTime;
     }
 
     public function user($status) 
