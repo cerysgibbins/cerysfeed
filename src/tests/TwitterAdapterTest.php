@@ -6,6 +6,8 @@ use PHPUnit\Framework\TestCase;
 use CerysFeed\Adapters\AbrahamTwitterAdapter;
 use CerysFeed\Tests\Stubs\TwitterAPIResponse;
 use CerysFeed\Tests\Stubs\InvalidTwitterAPIResponse;
+use CerysFeed\Factories\TwitterOAuthFactory;
+use Abraham\TwitterOAuth\TwitterOAuth;
 
 class TwitterAdapterTest extends TestCase
 {
@@ -55,6 +57,32 @@ class TwitterAdapterTest extends TestCase
 
     public function testGetStatusesReturnsArrayOfStatuses()
     {
+        $expectedConsumerKey = 'consumerKey';
+        $expectedConsumerSecret = 'consumerSecret';
+        $expectedAccessToken = 'accessToken';
+        $expectedTokenSecret = 'tokenSecret';
+
+        $twitterAdapter = new AbrahamTwitterAdapter();
+        $twitterOAuthMock = $this->getMockBuilder(TwitterOAuth::class)
+            ->disableOriginalConstructor()
+            ->getMock();
         
+        $twitterOAuthMock->expects($this->once())
+            ->method('get')
+            ->will($this->returnValue([]));
+        
+        $twitterFactoryMock = $this->getMockBuilder(TwitterOAuthFactory::class)
+            ->getMock();
+            
+        $twitterFactoryMock->expects($this->once())
+            ->method('create')
+            ->with($expectedConsumerKey, $expectedConsumerSecret, $expectedAccessToken, $expectedTokenSecret)
+            ->will($this->returnValue($twitterOAuthMock));
+
+        $twitterAdapter->initialise($twitterFactoryMock, $expectedConsumerKey, $expectedConsumerSecret, $expectedAccessToken, $expectedTokenSecret);
+        
+        $statuses = $twitterAdapter->getStatuses('cerysgibbins', 10);
+
+        $this->assertEmpty($statuses);
     }
 }

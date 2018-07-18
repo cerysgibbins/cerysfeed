@@ -3,20 +3,16 @@
 namespace CerysFeed\Adapters;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
+use CerysFeed\Factories\TwitterOAuthFactory;
 
 class AbrahamTwitterAdapter implements TwitterAdapter
 {
     private $connection;
 
     /**
-     * @param TwitterOAuthFactory $twitterFactory
-     * @param string $consumerKey
-     * @param string $consumerSecret
-     * @param string $accessToken
-     * @param string $tokenSecret
-     * @return void
+     * @inheritDoc
      */
-    public function initialise($twitterFactory, $consumerKey, $consumerSecret, $accessToken, $tokenSecret)
+    public function initialise(TwitterOAuthFactory $twitterFactory, $consumerKey, $consumerSecret, $accessToken, $tokenSecret)
     {
         $this->connection = $twitterFactory->create(
             $consumerKey, $consumerSecret, $accessToken, $tokenSecret

@@ -2,9 +2,19 @@
 
 namespace CerysFeed\Adapters;
 
+use CerysFeed\Factories\TwitterOAuthFactory;
+
 interface TwitterAdapter
 {
-    public function initialise($consumerKey, $consumerSecret, $accessToken, $tokenSecret);
+    /**
+     * @param TwitterOAuthFactory $twitterFactory
+     * @param string $consumerKey
+     * @param string $consumerSecret
+     * @param string $accessToken
+     * @param string $tokenSecret
+     * @return void
+     */
+    public function initialise(TwitterOAuthFactory $twitterFactory, $consumerKey, $consumerSecret, $accessToken, $tokenSecret);
 
     public function getStatuses($screenName, $count);
 
