@@ -52,4 +52,9 @@ class TwitterAdapterTest extends TestCase
 
         $this->assertEquals($expectedUsermame, $twitterAdapter->user($status));
     }
+
+    public function testGetStatusesReturnsArrayOfStatuses()
+    {
+        
+    }
 }

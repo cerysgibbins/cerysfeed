@@ -8,9 +8,17 @@ class AbrahamTwitterAdapter implements TwitterAdapter
 {
     private $connection;
 
-    public function initialise($consumerKey, $consumerSecret, $accessToken, $tokenSecret)
+    /**
+     * @param TwitterOAuthFactory $twitterFactory
+     * @param string $consumerKey
+     * @param string $consumerSecret
+     * @param string $accessToken
+     * @param string $tokenSecret
+     * @return void
+     */
+    public function initialise($twitterFactory, $consumerKey, $consumerSecret, $accessToken, $tokenSecret)
     {
-        $this->connection = new TwitterOAuth(
+        $this->connection = $twitterFactory->create(
             $consumerKey, $consumerSecret, $accessToken, $tokenSecret
         );
     }
